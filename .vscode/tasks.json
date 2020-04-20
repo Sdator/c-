@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "process",
+            // "label": "g++.exe build active file",
+            "label": "生成exe",
+            "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
+            "args": [
+                // "-finput-charset=GBK",
+                "-mwindows",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-lgdi32",
+                "-luser32",
+                "-lkernel32",
+                "-lcomdlg32",
+                "-lwinspool",
+                "-lwinmm",
+                "-lcomctl32"
+            ],
+            "options": {
+                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
+            },
+            // "problemMatcher": [
+            //     "$gcc"
+            // ],
+            // "group": "build"
+        }
+    ]
+}
