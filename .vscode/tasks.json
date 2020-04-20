@@ -19,15 +19,42 @@
                 "-lcomdlg32",
                 "-lwinspool",
                 "-lwinmm",
-                "-lcomctl32"
+                "-lcomctl32",
+                "-l",
+                "${fileDirname}\\hook.obj"
             ],
             "options": {
                 "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
-            },
-            // "problemMatcher": [
-            //     "$gcc"
-            // ],
-            // "group": "build"
+            }
+        },
+        {
+            "type": "process",
+            "label": "编译obj",
+            "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
+            "args": [
+                "-c",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.obj",
+                "${file}"
+            ],
+            "options": {
+                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
+            }
+        },
+        {
+            // 链接obj，生成dll
+            "type": "process",
+            "label": "生成dll",
+            "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
+            "args": [
+                "-shared",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.so",
+                "${fileDirname}\\${fileBasenameNoExtension}.obj",
+            ],
+            "options": {
+                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
+            }
         }
     ]
 }

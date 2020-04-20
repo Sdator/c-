@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <windows.h>
+// 链接到 exe
+#pragma comment(obj, "hook.obj");
+
+// 导入 dll 函数
+extern "C" __MIDL_DECLSPEC_DLLIMPORT BOOL InstallMouseHook();
 
 /*
 链接库问题参考 由于本程序是带ui的 需要链接 gdi32.obj 静态库
@@ -115,7 +120,12 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     //鼠标右键按下消息
     case WM_RBUTTONDOWN:
     {
-        SetWindowText(hWnd, TEXT("右击了"));
+
+        if (InstallMouseHook())
+            SetWindowText(hWnd, TEXT("钩子成功"));
+        else
+            SetWindowText(hWnd, TEXT("钩子失败"));
+
         break;
     }
     //鼠标移动消息
