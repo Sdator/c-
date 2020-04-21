@@ -1,7 +1,7 @@
-#include <stdio.h>
 #include <windows.h>
+
 // 链接到 exe
-#pragma comment(obj, "hook.obj");
+#pragma comment(lib, "myhook.lib");
 
 // 导入 dll 函数
 extern "C" __MIDL_DECLSPEC_DLLIMPORT BOOL InstallMouseHook();
@@ -59,7 +59,7 @@ int WINAPI WinMain(HINSTANCE hIns, HINSTANCE hPre, LPSTR lpCmd, int nCmdShow)
     // 父窗口句柄
     // 窗口菜单句柄
     // 窗口属于那个进程句柄
-    //  ? NULL
+    // 未知
     HWND hWnd = CreateWindow(szAppName, TEXT("测试"), WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MAXIMIZEBOX | WS_MINIMIZEBOX, 500, 200, 800, 600, NULL, NULL, hIns, NULL);
 
     // 4.显示和更新窗口
@@ -157,7 +157,6 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 */
 LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-
     /*
     传递钩子给下一个处理函数
     1 钩子句柄

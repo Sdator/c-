@@ -12,4 +12,3 @@ extern "C" __MIDL_DECLSPEC_DLLEXPORT BOOL InstallMouseHook();
 */
 LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam);
 
-
