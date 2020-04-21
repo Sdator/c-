@@ -1,6 +1,7 @@
 {
     "version": "2.0.0",
     "tasks": [
+        
         {
             "type": "process",
             // "label": "g++.exe build active file",
@@ -13,6 +14,22 @@
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
+            }
+        },
+        {
+            "type": "process",
+            // "label": "g++.exe build active file",
+            "label": "钩子编译测试",
+            "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
+            "args": [
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${file}",
+                "-L${fileDirname}",
+                "-lhook"
             ],
             "options": {
                 "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
@@ -109,12 +126,25 @@
         {
             // 生成静态链接库
             "type": "process",
-            "label": "生成静态链接库",
+            "label": "ar生成静态链接库",
             "command": "ar",
             "args": [
                 "cqs",
                 "${fileDirname}\\${fileBasenameNoExtension}.a", //生成静态链接库文件
                 "${fileDirname}\\${fileBasenameNoExtension}.o" //用已有的目标文件
+            ],
+            "options": {
+                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
+            }
+        },
+        {
+            // 生成静态链接库
+            "type": "process",
+            "label": "g++生成静态链接库",
+            "command": "g++",
+            "args": [
+                "${file}",
+                "-Wl,--out-implib,${fileBasenameNoExtension}.lib", //生成静态链接库文件
             ],
             "options": {
                 "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"

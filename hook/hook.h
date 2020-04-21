@@ -1,4 +1,12 @@
 
+// 预处理 防止重复加载库
+// 如果没有定义库 就定义一个
+#ifndef HOOK_H
+#define HOOK_H
+
+
+
+
 #include <windows.h>
 
 // 定义并导出 dll 函数
@@ -12,3 +20,4 @@ extern "C" __MIDL_DECLSPEC_DLLEXPORT BOOL InstallMouseHook();
 */
 LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam);
 
+#endif

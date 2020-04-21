@@ -13,8 +13,8 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            // 控制台是否现实
-            "externalConsole": false,
+            // 控制台是否显示
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\gdb.exe",
             "setupCommands": [
@@ -27,6 +27,7 @@
             // 调试前 运行任务 修改了标签
             // "preLaunchTask": "g++.exe build active file" 
             "preLaunchTask": "生成exe"
+            // "preLaunchTask": "钩子编译测试"
         }
     ]
 }

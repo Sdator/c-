@@ -1,10 +1,10 @@
 #include <windows.h>
 
 // 链接到 exe
-#pragma comment(lib, "myhook.lib");
+// #pragma comment(lib, "myhook.lib");
 
 // 导入 dll 函数
-extern "C" __MIDL_DECLSPEC_DLLIMPORT BOOL InstallMouseHook();
+// extern "C" __MIDL_DECLSPEC_DLLIMPORT BOOL InstallMouseHook();
 
 /*
 链接库问题参考 由于本程序是带ui的 需要链接 gdi32.obj 静态库
@@ -121,10 +121,10 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     case WM_RBUTTONDOWN:
     {
 
-        if (InstallMouseHook())
-            SetWindowText(hWnd, TEXT("钩子成功"));
-        else
-            SetWindowText(hWnd, TEXT("钩子失败"));
+        // if (InstallMouseHook())
+        //     SetWindowText(hWnd, TEXT("钩子成功"));
+        // else
+        //     SetWindowText(hWnd, TEXT("钩子失败"));
 
         break;
     }
