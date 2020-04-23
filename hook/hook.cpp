@@ -24,8 +24,8 @@ BOOL InstallMouseHook()
         return false;
 }
 
+
 LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-
     return CallNextHookEx(g_mouseHook, nCode, wParam, lParam);
 }

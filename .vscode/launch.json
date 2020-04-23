@@ -26,7 +26,7 @@
             ],
             // 调试前 运行任务 修改了标签
             // "preLaunchTask": "g++.exe build active file" 
-            "preLaunchTask": "生成exe"
+            "preLaunchTask": "CUI程序开发cmd"
             // "preLaunchTask": "钩子编译测试"
         }
     ]

@@ -1,15 +1,26 @@
 {
     "version": "2.0.0",
     "tasks": [
-        
         {
             "type": "process",
-            // "label": "g++.exe build active file",
-            "label": "生成exe",
+            "label": "GUI程序开发",
             "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
             "args": [
-                // "-finput-charset=GBK",
-                "-mwindows",
+                "-mwindows", //是一个窗口程序 入口为 WinMain
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
+            }
+        },
+        {
+            "type": "process",
+            "label": "CUI程序开发cmd", // 终端程序 入口为 main
+            "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
+            "args": [
                 "-g",
                 "${file}",
                 "-o",
@@ -38,13 +49,12 @@
         {
             "type": "process",
             // "label": "g++.exe build active file",
-            "label": "生成GUI程序",
+            "label": "生成GUI程序（带库）",
             "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
             "args": [
                 // "-finput-charset=GBK",
                 "-mwindows",
-                // 链接库目录
-                "-L${fileDirname}",
+                "-L${fileDirname}", // 链接库目录
                 "-g",
                 "${file}",
                 "-o",
@@ -57,7 +67,6 @@
                 "-lwinmm",
                 "-lcomctl32",
                 "-lcomctl32",
-                "-lhook.so"
             ],
             "options": {
                 "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
@@ -65,41 +74,12 @@
         },
         {
             "type": "process",
-            "label": "编译obj",
-            "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
-            "args": [
-                "-c",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.obj",
-                "${file}"
-            ],
-            "options": {
-                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
-            }
-        },
-        {
-            // 链接obj，生成dll
-            "type": "process",
-            "label": "生成动态链接库so",
-            "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
-            "args": [
-                "-shared",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.so",
-                "${fileDirname}\\${fileBasenameNoExtension}.obj",
-            ],
-            "options": {
-                "cwd": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin"
-            }
-        },
-        {
-            "type": "process",
-            "label": "编译dll",
+            "label": "编译dll（无库）",
             "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
             "args": [
                 "-shared", //指定生成动态链接库
                 "-fPIC", //编译为位置独立的代码
-                "-I${fileDirname}",
+                "-L${fileDirname}", //设置库目录
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.so",
                 "${fileDirname}\\${fileBasenameNoExtension}.cpp",
@@ -111,7 +91,7 @@
         {
             // 生成目标文件(.o/.obj文件)
             "type": "process",
-            "label": "生成目标文件",
+            "label": "1.生成目标文件",
             "command": "D:\\Apps\\mingw64-GCC-810-posix-seh\\bin\\g++.exe",
             "args": [
                 "-c", //编译并汇编，但不链接
@@ -157,7 +137,7 @@
             "command": "g++",
             "args": [
                 "-o", //编译并汇编，但不链接
-                "static_mian",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "${fileDirname}\\${fileBasenameNoExtension}.cpp",
                 "-L${fileDirname}", //链接库目录
                 "-lgdi32",
